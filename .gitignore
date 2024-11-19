@@ -1,0 +1,63 @@
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+.idea/
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Dd]ist/
+[Dd]istros/
+[Dd]ebug/
+[Dd]ebugCore/
+[Dd]ebugShared/
+[Dd]Release/
+[Dd]ebug/Generated/
+
+# User-specific files
+.vscode/
+.vs/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+# Windows Installer package
+*.vsix
+
+# Windows Package Manager files
+*.AppX
+*.AppXUpload
+*.appxbundle
+*.appxupload
+
+# .NET Core files
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Rider IDE files
+.idea/
+
+# VS for Mac files
+.vscode/
+
+# Dotnet specific
+*.dbmdl
+.vs2019/
+.vs2022/
+.vs2017/
+.vs/
+
+# Other system-specific files
+Thumbs.db
+Desktop.ini
+
+# Exclude obj folder
+obj/
