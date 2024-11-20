@@ -71,7 +71,7 @@ internal class Program
             }
             else if (response == Constants.STATUS_OTP_TIMEOUT)
             {
-                Console.WriteLine(response);  // Output timeout message
+                Console.WriteLine($"{response}. Please request to send OTP again.");  // Output timeout message
                 break;  // Exit if OTP expired
             }
         }

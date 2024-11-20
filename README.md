@@ -12,60 +12,47 @@ The OTP can only be sent to email addresses with specific domain ".dso.org.sg". 
 The OTP is valid only for a short duration (1 minute). After this time, the OTP will expire, and any attempts to check the OTP after expiration will result in a timeout error.
 Once the OTP has expired, the application will remove the OTP from its store, and any future attempts to verify it should return the OTP timeout error.
 
-5.Limited OTP Attempts:
+5. Limited OTP Attempts:
 Users have a maximum of 10 attempts to enter the correct OTP. After 10 failed attempts, the OTP will no longer be valid, and the system will return an OTP fail error.
 The application will track the number of failed attempts for each user and stop after 10 incorrect entries.
 
 
 
-Describe how you would test your module.
-xUnit is used to make unit testing easy and effective.
+Test Framework:
+xUnit is used to structure and run the test. 
 The EmailOTPServiceTest class is created to test the functionality of the EmailOTPService module.
 
 Test 1: generate_OTP_email_ValidEmail_ShouldReturnStatusEmailOk
-Objective: Verify that a valid email address generates a new OTP and returns STATUS_EMAIL_OK.
-Test Flow:
-A valid email from the predefined list is passed to the generate_OTP_email method.
-The test asserts that the OTP generation is successful and that the status returned is STATUS_EMAIL_OK.
+- Objective: Verify that the system correctly generates and sends an OTP when a valid email is provided.
+- Input: A valid email address
+- Expected Outcome: The OTP is generated.The service returns STATUS_EMAIL_OK.
 
 Test 2: generate_OTP_email_InvalidEmail_ShouldReturnStatusEmailInvalid
-Objective: Ensure that an invalid email domain returns STATUS_EMAIL_INVALID.
-Test Flow:
-An email address outside of the whitelisted domain is passed to generate_OTP_email.
-The test asserts that the result is STATUS_EMAIL_INVALID.
+- Objective: Ensure that emails with invalid domains, the service returns STATUS_EMAIL_INVALID.
+- Input: An email address with invalid domain
+- Expected Outcome: The service return STATUS_EMAIL_INVALID.
 
 Test 3: generate_OTP_email_EmailSendingFails_ShouldReturnStatusEmailFail
-Objective: Verify that when the email fails to be sent, the result is STATUS_EMAIL_FAIL.
-Test Flow:
-An invalid email address is passed to generate_OTP_email.
-The test asserts that the result is STATUS_EMAIL_FAIL.
+- Objective: Ensure that when the email is invalid (not within the predefined list), the service return STATUS_EMAIL_FAIL.
+- Input: An invalid email
+- Expected Outcome: The service return STATUS_EMAIL_FAIL.
 
 Test 4: check_OTP_CorrectOTP_ShouldReturnStatusOtpOk
-Objective: Test OTP verification for a correct OTP.
-Test Flow:
-Generate an OTP using a valid email address.
-Retrieve the correct OTP from the store.
-Verify that entering the correct OTP results in STATUS_OTP_OK.
-The test also asserts that the isOTPMatched value is true.
+- Objective: Ensure OTP verification for a correct OTP.
+- Input: The correct OTP
+- Expected Outcome: The OTP matches, and the service returns STATUS_OTP_OK.
 
 Test 5: check_OTP_IncorrectOTP_ShouldReturnStatusOtpFail
-Objective: Ensure incorrect OTP results in STATUS_OTP_FAIL.
-Test Flow:
-Generate an OTP and retrieve it from the store.
-Modify the OTP to make it incorrect.
-Verify that the incorrect OTP results in STATUS_OTP_FAIL.
+- Objective: Verify that when an incorrect OTP is entered, the system returns a failure status STATUS_OTP_FAIL.
+- Input: An incorrect OTP
+- Expected Outcome: The service should return STATUS_OTP_FAIL if the OTP doesn't match.
 
 Test 6: check_OTP_MaxAttemptsExceeded_ShouldReturnStatusOtpFail
-Objective: Verify that the system enforces a maximum retry limit and returns STATUS_OTP_FAIL after 10 failed attempts.
-Test Flow:
-Generate an OTP for a valid email.
-Simulate 10 incorrect attempts.
-Assert that STATUS_OTP_FAIL is returned for each attempt.
-On the 11th attempt, ensure the system still returns STATUS_OTP_FAIL.
+- Objective: Verify that the system enforces a maximum retry limit and returns STATUS_OTP_FAIL after 10 failed attempts.
+- Input: 10 failed attempts of incorrect OTP
+- Expected Outcome: After 10 failed attempts, the service returns STATUS_OTP_FAIL on the 11th attempt
 
 Test 7: check_OTP_ExpiredOtp_ShouldReturnStatusOtpTimeout
-Objective: Verify that OTP expiration is handled correctly, returning STATUS_OTP_TIMEOUT.
-Test Flow:
-Generate an OTP.
-Simulate OTP expiration by adding a delay.
-Verify that after expiration, the OTP validation returns STATUS_OTP_TIMEOUT.
+- Objective: Verify that OTP expiration is handled correctly, returning STATUS_OTP_TIMEOUT.
+- Input: An OTP that has expired.
+- Expected Outcome: Verify that after expiration (1 min), the OTP validation returns STATUS_OTP_TIMEOUT.

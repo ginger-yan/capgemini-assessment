@@ -7,16 +7,6 @@ namespace CapgeminiAssessment.Test
 {
     public class EmailOTPServiceTest
     {
-        //private readonly EmailService _mockEmailService;
-        //private readonly EmailOTPService _emailOTPService;
-
-        //public EmailOTPServiceTest()
-        //{
-        //    // Arrange: Initialize the mock EmailService and EmailOTPModule
-        //    _mockEmailService = new EmailService(["user@test1.dso.org.sg", "def@test2.dso.org.sg", "ghi@test3.dso.org.sg,user@dso.org.sg"]);
-        //    _emailOTPService = new EmailOTPService(_mockEmailService);
-        //}
-
         private readonly EmailService _emailService;
         private readonly EmailOTPService _emailOTPService;
 
